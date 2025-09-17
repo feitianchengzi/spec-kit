@@ -2,7 +2,7 @@ name: Create Release
 
 on:
   push:
-    branches: [ main ]
+    branches: [ zh-hans ]
     paths:
       - 'memory/**'
       - 'scripts/**'
@@ -29,16 +29,20 @@ jobs:
           LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
           echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
           
-          # Extract version number and increment
+          # Extract base version (official version) and custom version
           VERSION=$(echo $LATEST_TAG | sed 's/v//')
-          IFS='.' read -ra VERSION_PARTS <<< "$VERSION"
-          MAJOR=${VERSION_PARTS[0]:-0}
-          MINOR=${VERSION_PARTS[1]:-0}
-          PATCH=${VERSION_PARTS[2]:-0}
           
-          # Increment patch version
-          PATCH=$((PATCH + 1))
-          NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+          # Check if it's a custom version format (contains zh-hans)
+          if [[ $VERSION == *"+zh-hans."* ]]; then
+            # Format: v0.0.34+zh-hans.1 - increment custom version
+            BASE_VERSION=$(echo $VERSION | sed 's/+zh-hans.*//')
+            CUSTOM_VERSION=$(echo $VERSION | sed 's/.*+zh-hans\.//')
+            CUSTOM_VERSION=$((CUSTOM_VERSION + 1))
+            NEW_VERSION="v${BASE_VERSION}+zh-hans.${CUSTOM_VERSION}"
+          else
+            # Standard version format, create first custom version
+            NEW_VERSION="v${VERSION}+zh-hans.1"
+          fi
           
           echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "New version will be: $NEW_VERSION"
@@ -105,7 +109,12 @@ jobs:
           VERSION_NO_V=${{ steps.get_tag.outputs.new_version }}
           VERSION_NO_V=${VERSION_NO_V#v}
           
+          # Get current commit SHA to ensure tag is created on the right commit
+          CURRENT_COMMIT=$(git rev-parse HEAD)
+          echo "Creating release on commit: $CURRENT_COMMIT"
+          
           gh release create ${{ steps.get_tag.outputs.new_version }} \
+            --target $CURRENT_COMMIT \
             spec-kit-template-copilot-sh-${{ steps.get_tag.outputs.new_version }}.zip \
             spec-kit-template-copilot-ps-${{ steps.get_tag.outputs.new_version }}.zip \
             spec-kit-template-claude-sh-${{ steps.get_tag.outputs.new_version }}.zip \

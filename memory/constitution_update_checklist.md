@@ -1,85 +1,85 @@
-# Constitution Update Checklist
+# 章程更新检查清单
 
-When amending the constitution (`/memory/constitution.md`), ensure all dependent documents are updated to maintain consistency.
+在修订章程（`/memory/constitution.md`）时，确保所有相关文档都已更新以保持一致性。
 
-## Templates to Update
+## 需要更新的模板
 
-### When adding/modifying ANY article:
-- [ ] `/templates/plan-template.md` - Update Constitution Check section
-- [ ] `/templates/spec-template.md` - Update if requirements/scope affected
-- [ ] `/templates/tasks-template.md` - Update if new task types needed
-- [ ] `/.claude/commands/plan.md` - Update if planning process changes
-- [ ] `/.claude/commands/tasks.md` - Update if task generation affected
-- [ ] `/CLAUDE.md` - Update runtime development guidelines
+### 添加/修改任何条款时：
+- [ ] `/templates/plan-template.md` - 更新章程检查部分
+- [ ] `/templates/spec-template.md` - 如果需求/范围受影响则更新
+- [ ] `/templates/tasks-template.md` - 如果需要新任务类型则更新
+- [ ] `/.claude/commands/plan.md` - 如果规划流程变更则更新
+- [ ] `/.claude/commands/tasks.md` - 如果任务生成受影响则更新
+- [ ] `/CLAUDE.md` - 更新运行时开发指南
 
-### Article-specific updates:
+### 条款特定更新：
 
-#### Article I (Library-First):
-- [ ] Ensure templates emphasize library creation
-- [ ] Update CLI command examples
-- [ ] Add llms.txt documentation requirements
+#### 条款 I（库优先）：
+- [ ] 确保模板强调库创建
+- [ ] 更新 CLI 命令示例
+- [ ] 添加 llms.txt 文档要求
 
-#### Article II (CLI Interface):
-- [ ] Update CLI flag requirements in templates
-- [ ] Add text I/O protocol reminders
+#### 条款 II（CLI 接口）：
+- [ ] 更新模板中的 CLI 标志要求
+- [ ] 添加文本 I/O 协议提醒
 
-#### Article III (Test-First):
-- [ ] Update test order in all templates
-- [ ] Emphasize TDD requirements
-- [ ] Add test approval gates
+#### 条款 III（测试优先）：
+- [ ] 更新所有模板中的测试顺序
+- [ ] 强调 TDD 要求
+- [ ] 添加测试批准门控
 
-#### Article IV (Integration Testing):
-- [ ] List integration test triggers
-- [ ] Update test type priorities
-- [ ] Add real dependency requirements
+#### 条款 IV（集成测试）：
+- [ ] 列出集成测试触发条件
+- [ ] 更新测试类型优先级
+- [ ] 添加真实依赖要求
 
-#### Article V (Observability):
-- [ ] Add logging requirements to templates
-- [ ] Include multi-tier log streaming
-- [ ] Update performance monitoring sections
+#### 条款 V（可观测性）：
+- [ ] 向模板添加日志要求
+- [ ] 包含多层日志流
+- [ ] 更新性能监控部分
 
-#### Article VI (Versioning):
-- [ ] Add version increment reminders
-- [ ] Include breaking change procedures
-- [ ] Update migration requirements
+#### 条款 VI（版本控制）：
+- [ ] 添加版本增量提醒
+- [ ] 包含破坏性变更程序
+- [ ] 更新迁移要求
 
-#### Article VII (Simplicity):
-- [ ] Update project count limits
-- [ ] Add pattern prohibition examples
-- [ ] Include YAGNI reminders
+#### 条款 VII（简洁性）：
+- [ ] 更新项目数量限制
+- [ ] 添加模式禁止示例
+- [ ] 包含 YAGNI 提醒
 
-## Validation Steps
+## 验证步骤
 
-1. **Before committing constitution changes:**
-   - [ ] All templates reference new requirements
-   - [ ] Examples updated to match new rules
-   - [ ] No contradictions between documents
+1. **提交章程更改前：**
+   - [ ] 所有模板都引用了新要求
+   - [ ] 示例已更新以匹配新规则
+   - [ ] 文档间无矛盾
 
-2. **After updating templates:**
-   - [ ] Run through a sample implementation plan
-   - [ ] Verify all constitution requirements addressed
-   - [ ] Check that templates are self-contained (readable without constitution)
+2. **更新模板后：**
+   - [ ] 运行示例实现计划
+   - [ ] 验证所有章程要求都已解决
+   - [ ] 检查模板是否自包含（无需章程即可阅读）
 
-3. **Version tracking:**
-   - [ ] Update constitution version number
-   - [ ] Note version in template footers
-   - [ ] Add amendment to constitution history
+3. **版本跟踪：**
+   - [ ] 更新章程版本号
+   - [ ] 在模板页脚中注明版本
+   - [ ] 将修订添加到章程历史
 
-## Common Misses
+## 常见遗漏
 
-Watch for these often-forgotten updates:
-- Command documentation (`/commands/*.md`)
-- Checklist items in templates
-- Example code/commands
-- Domain-specific variations (web vs mobile vs CLI)
-- Cross-references between documents
+注意这些经常被遗忘的更新：
+- 命令文档（`/commands/*.md`）
+- 模板中的检查清单项目
+- 示例代码/命令
+- 领域特定变化（web vs mobile vs CLI）
+- 文档间的交叉引用
 
-## Template Sync Status
+## 模板同步状态
 
-Last sync check: 2025-07-16
-- Constitution version: 2.1.1
-- Templates aligned: ❌ (missing versioning, observability details)
+最后同步检查：2025-07-16
+- 章程版本：2.1.1
+- 模板对齐：❌（缺少版本控制、可观测性详情）
 
 ---
 
-*This checklist ensures the constitution's principles are consistently applied across all project documentation.*
+*此检查清单确保章程原则在所有项目文档中一致应用。*

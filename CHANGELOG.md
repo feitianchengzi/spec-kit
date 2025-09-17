@@ -1,22 +1,22 @@
-# Changelog
+# 更新日志
 
-All notable changes to the Specify CLI will be documented in this file.
+Specify CLI 的所有重要更改都将记录在此文件中。
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+格式基于 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)，
+本项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
 
-## [Unreleased]
+## [未发布]
 
 ## [0.0.4] - 2025-09-14
 
-### Added
+### 新增
 
-- SOCKS proxy support for corporate environments via `httpx[socks]` dependency
+- 通过 `httpx[socks]` 依赖项为企业环境提供 SOCKS 代理支持
 
-### Fixed
+### 修复
 
-N/A
+无
 
-### Changed
+### 更改
 
-N/A
+无

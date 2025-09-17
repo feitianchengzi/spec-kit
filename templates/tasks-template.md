@@ -1,127 +1,127 @@
-# Tasks: [FEATURE NAME]
+# 任务：[功能名称]
 
-**Input**: Design documents from `/specs/[###-feature-name]/`
-**Prerequisites**: plan.md (required), research.md, data-model.md, contracts/
+**输入**: 来自 `/specs/[###-feature-name]/` 的设计文档
+**先决条件**: plan.md（必需）、research.md、data-model.md、contracts/
 
-## Execution Flow (main)
+## 执行流程（主）
 ```
-1. Load plan.md from feature directory
-   → If not found: ERROR "No implementation plan found"
-   → Extract: tech stack, libraries, structure
-2. Load optional design documents:
-   → data-model.md: Extract entities → model tasks
-   → contracts/: Each file → contract test task
-   → research.md: Extract decisions → setup tasks
-3. Generate tasks by category:
-   → Setup: project init, dependencies, linting
-   → Tests: contract tests, integration tests
-   → Core: models, services, CLI commands
-   → Integration: DB, middleware, logging
-   → Polish: unit tests, performance, docs
-4. Apply task rules:
-   → Different files = mark [P] for parallel
-   → Same file = sequential (no [P])
-   → Tests before implementation (TDD)
-5. Number tasks sequentially (T001, T002...)
-6. Generate dependency graph
-7. Create parallel execution examples
-8. Validate task completeness:
-   → All contracts have tests?
-   → All entities have models?
-   → All endpoints implemented?
-9. Return: SUCCESS (tasks ready for execution)
-```
-
-## Format: `[ID] [P?] Description`
-- **[P]**: Can run in parallel (different files, no dependencies)
-- Include exact file paths in descriptions
-
-## Path Conventions
-- **Single project**: `src/`, `tests/` at repository root
-- **Web app**: `backend/src/`, `frontend/src/`
-- **Mobile**: `api/src/`, `ios/src/` or `android/src/`
-- Paths shown below assume single project - adjust based on plan.md structure
-
-## Phase 3.1: Setup
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
-
-## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
-**CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test POST /api/users in tests/contract/test_users_post.py
-- [ ] T005 [P] Contract test GET /api/users/{id} in tests/contract/test_users_get.py
-- [ ] T006 [P] Integration test user registration in tests/integration/test_registration.py
-- [ ] T007 [P] Integration test auth flow in tests/integration/test_auth.py
-
-## Phase 3.3: Core Implementation (ONLY after tests are failing)
-- [ ] T008 [P] User model in src/models/user.py
-- [ ] T009 [P] UserService CRUD in src/services/user_service.py
-- [ ] T010 [P] CLI --create-user in src/cli/user_commands.py
-- [ ] T011 POST /api/users endpoint
-- [ ] T012 GET /api/users/{id} endpoint
-- [ ] T013 Input validation
-- [ ] T014 Error handling and logging
-
-## Phase 3.4: Integration
-- [ ] T015 Connect UserService to DB
-- [ ] T016 Auth middleware
-- [ ] T017 Request/response logging
-- [ ] T018 CORS and security headers
-
-## Phase 3.5: Polish
-- [ ] T019 [P] Unit tests for validation in tests/unit/test_validation.py
-- [ ] T020 Performance tests (<200ms)
-- [ ] T021 [P] Update docs/api.md
-- [ ] T022 Remove duplication
-- [ ] T023 Run manual-testing.md
-
-## Dependencies
-- Tests (T004-T007) before implementation (T008-T014)
-- T008 blocks T009, T015
-- T016 blocks T018
-- Implementation before polish (T019-T023)
-
-## Parallel Example
-```
-# Launch T004-T007 together:
-Task: "Contract test POST /api/users in tests/contract/test_users_post.py"
-Task: "Contract test GET /api/users/{id} in tests/contract/test_users_get.py"
-Task: "Integration test registration in tests/integration/test_registration.py"
-Task: "Integration test auth in tests/integration/test_auth.py"
+1. 从功能目录加载 plan.md
+   → 如果未找到：错误"未找到实现计划"
+   → 提取：技术栈、库、结构
+2. 加载可选设计文档：
+   → data-model.md：提取实体 → 模型任务
+   → contracts/：每个文件 → 合约测试任务
+   → research.md：提取决策 → 设置任务
+3. 按类别生成任务：
+   → 设置：项目初始化、依赖项、代码检查
+   → 测试：合约测试、集成测试
+   → 核心：模型、服务、CLI 命令
+   → 集成：数据库、中间件、日志
+   → 完善：单元测试、性能、文档
+4. 应用任务规则：
+   → 不同文件 = 标记 [P] 用于并行
+   → 相同文件 = 顺序（无 [P]）
+   → 测试在实现之前（TDD）
+5. 按顺序编号任务（T001、T002...）
+6. 生成依赖图
+7. 创建并行执行示例
+8. 验证任务完整性：
+   → 所有合约都有测试？
+   → 所有实体都有模型？
+   → 所有端点都已实现？
+9. 返回：成功（任务准备执行）
 ```
 
-## Notes
-- [P] tasks = different files, no dependencies
-- Verify tests fail before implementing
-- Commit after each task
-- Avoid: vague tasks, same file conflicts
+## 格式：`[ID] [P?] 描述`
+- **[P]**：可以并行运行（不同文件，无依赖）
+- 在描述中包含确切文件路径
 
-## Task Generation Rules
-*Applied during main() execution*
+## 路径约定
+- **单一项目**：`src/`、`tests/` 在仓库根目录
+- **Web 应用**：`backend/src/`、`frontend/src/`
+- **移动**：`api/src/`、`ios/src/` 或 `android/src/`
+- 下面显示的路径假设单一项目 - 根据 plan.md 结构调整
 
-1. **From Contracts**:
-   - Each contract file → contract test task [P]
-   - Each endpoint → implementation task
+## 阶段 3.1：设置
+- [ ] T001 根据实现计划创建项目结构
+- [ ] T002 使用 [框架] 依赖项初始化 [语言] 项目
+- [ ] T003 [P] 配置代码检查和格式化工具
+
+## 阶段 3.2：测试优先（TDD）⚠️ 必须在 3.3 之前完成
+**关键：这些测试必须在任何实现之前编写并必须失败**
+- [ ] T004 [P] 在 tests/contract/test_users_post.py 中合约测试 POST /api/users
+- [ ] T005 [P] 在 tests/contract/test_users_get.py 中合约测试 GET /api/users/{id}
+- [ ] T006 [P] 在 tests/integration/test_registration.py 中集成测试用户注册
+- [ ] T007 [P] 在 tests/integration/test_auth.py 中集成测试认证流程
+
+## 阶段 3.3：核心实现（仅在测试失败后）
+- [ ] T008 [P] 在 src/models/user.py 中的用户模型
+- [ ] T009 [P] 在 src/services/user_service.py 中的 UserService CRUD
+- [ ] T010 [P] 在 src/cli/user_commands.py 中的 CLI --create-user
+- [ ] T011 POST /api/users 端点
+- [ ] T012 GET /api/users/{id} 端点
+- [ ] T013 输入验证
+- [ ] T014 错误处理和日志
+
+## 阶段 3.4：集成
+- [ ] T015 将 UserService 连接到数据库
+- [ ] T016 认证中间件
+- [ ] T017 请求/响应日志
+- [ ] T018 CORS 和安全头
+
+## 阶段 3.5：完善
+- [ ] T019 [P] 在 tests/unit/test_validation.py 中验证的单元测试
+- [ ] T020 性能测试（<200ms）
+- [ ] T021 [P] 更新 docs/api.md
+- [ ] T022 删除重复
+- [ ] T023 运行 manual-testing.md
+
+## 依赖关系
+- 测试（T004-T007）在实现（T008-T014）之前
+- T008 阻止 T009、T015
+- T016 阻止 T018
+- 实现在完善（T019-T023）之前
+
+## 并行示例
+```
+# 一起启动 T004-T007：
+任务："在 tests/contract/test_users_post.py 中合约测试 POST /api/users"
+任务："在 tests/contract/test_users_get.py 中合约测试 GET /api/users/{id}"
+任务："在 tests/integration/test_registration.py 中集成测试注册"
+任务："在 tests/integration/test_auth.py 中集成测试认证"
+```
+
+## 注意事项
+- [P] 任务 = 不同文件，无依赖
+- 在实现前验证测试失败
+- 每个任务后提交
+- 避免：模糊任务、相同文件冲突
+
+## 任务生成规则
+*在 main() 执行期间应用*
+
+1. **从合约**：
+   - 每个合约文件 → 合约测试任务 [P]
+   - 每个端点 → 实现任务
    
-2. **From Data Model**:
-   - Each entity → model creation task [P]
-   - Relationships → service layer tasks
+2. **从数据模型**：
+   - 每个实体 → 模型创建任务 [P]
+   - 关系 → 服务层任务
    
-3. **From User Stories**:
-   - Each story → integration test [P]
-   - Quickstart scenarios → validation tasks
+3. **从用户故事**：
+   - 每个故事 → 集成测试 [P]
+   - 快速开始场景 → 验证任务
 
-4. **Ordering**:
-   - Setup → Tests → Models → Services → Endpoints → Polish
-   - Dependencies block parallel execution
+4. **排序**：
+   - 设置 → 测试 → 模型 → 服务 → 端点 → 完善
+   - 依赖关系阻止并行执行
 
-## Validation Checklist
-*GATE: Checked by main() before returning*
+## 验证检查清单
+*门控：在返回前由 main() 检查*
 
-- [ ] All contracts have corresponding tests
-- [ ] All entities have model tasks
-- [ ] All tests come before implementation
-- [ ] Parallel tasks truly independent
-- [ ] Each task specifies exact file path
-- [ ] No task modifies same file as another [P] task
+- [ ] 所有合约都有对应测试
+- [ ] 所有实体都有模型任务
+- [ ] 所有测试都在实现之前
+- [ ] 并行任务真正独立
+- [ ] 每个任务指定确切文件路径
+- [ ] 没有任务修改与另一个 [P] 任务相同的文件

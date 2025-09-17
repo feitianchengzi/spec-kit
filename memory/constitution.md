@@ -1,7 +1,7 @@
-# [PROJECT_NAME] Constitution
+# [PROJECT_NAME] 章程
 <!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
 
-## Core Principles
+## 核心原则
 
 ### [PRINCIPLE_1_NAME]
 <!-- Example: I. Library-First -->
@@ -40,11 +40,11 @@
 [SECTION_3_CONTENT]
 <!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
 
-## Governance
+## 治理
 <!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
 [GOVERNANCE_RULES]
 <!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
+**版本**: [CONSTITUTION_VERSION] | **批准**: [RATIFICATION_DATE] | **最后修订**: [LAST_AMENDED_DATE]
 <!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->

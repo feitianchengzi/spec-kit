@@ -1,116 +1,116 @@
-# Feature Specification: [FEATURE NAME]
+# 功能规范：[功能名称]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+**功能分支**: `[###-feature-name]`  
+**创建**: [DATE]  
+**状态**: 草稿  
+**输入**: 用户描述："$ARGUMENTS"
 
-## Execution Flow (main)
+## 执行流程（主）
 ```
-1. Parse user description from Input
-   → If empty: ERROR "No feature description provided"
-2. Extract key concepts from description
-   → Identify: actors, actions, data, constraints
-3. For each unclear aspect:
-   → Mark with [NEEDS CLARIFICATION: specific question]
-4. Fill User Scenarios & Testing section
-   → If no clear user flow: ERROR "Cannot determine user scenarios"
-5. Generate Functional Requirements
-   → Each requirement must be testable
-   → Mark ambiguous requirements
-6. Identify Key Entities (if data involved)
-7. Run Review Checklist
-   → If any [NEEDS CLARIFICATION]: WARN "Spec has uncertainties"
-   → If implementation details found: ERROR "Remove tech details"
-8. Return: SUCCESS (spec ready for planning)
+1. 从输入解析用户描述
+   → 如果为空：错误"未提供功能描述"
+2. 从描述中提取关键概念
+   → 识别：参与者、操作、数据、约束
+3. 对于每个不清楚的方面：
+   → 用 [需要澄清：具体问题] 标记
+4. 填写用户场景和测试部分
+   → 如果没有清晰的用户流程：错误"无法确定用户场景"
+5. 生成功能需求
+   → 每个需求必须可测试
+   → 标记模糊需求
+6. 识别关键实体（如果涉及数据）
+7. 运行审查检查清单
+   → 如果有任何 [需要澄清]：警告"规范有不确定性"
+   → 如果找到实现细节：错误"删除技术细节"
+8. 返回：成功（规范准备规划）
 ```
 
 ---
 
-## ⚡ Quick Guidelines
-- ✅ Focus on WHAT users need and WHY
-- ❌ Avoid HOW to implement (no tech stack, APIs, code structure)
-- 👥 Written for business stakeholders, not developers
+## ⚡ 快速指南
+- ✅ 专注于用户需要什么以及为什么
+- ❌ 避免如何实现（无技术栈、API、代码结构）
+- 👥 为业务利益相关者编写，不是开发者
 
-### Section Requirements
-- **Mandatory sections**: Must be completed for every feature
-- **Optional sections**: Include only when relevant to the feature
-- When a section doesn't apply, remove it entirely (don't leave as "N/A")
+### 章节要求
+- **必需章节**：每个功能都必须完成
+- **可选章节**：仅在相关时包含
+- 当章节不适用时，完全删除它（不要留为"N/A"）
 
-### For AI Generation
-When creating this spec from a user prompt:
-1. **Mark all ambiguities**: Use [NEEDS CLARIFICATION: specific question] for any assumption you'd need to make
-2. **Don't guess**: If the prompt doesn't specify something (e.g., "login system" without auth method), mark it
-3. **Think like a tester**: Every vague requirement should fail the "testable and unambiguous" checklist item
-4. **Common underspecified areas**:
-   - User types and permissions
-   - Data retention/deletion policies  
-   - Performance targets and scale
-   - Error handling behaviors
-   - Integration requirements
-   - Security/compliance needs
-
----
-
-## User Scenarios & Testing *(mandatory)*
-
-### Primary User Story
-[Describe the main user journey in plain language]
-
-### Acceptance Scenarios
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
-### Edge Cases
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
-
-## Requirements *(mandatory)*
-
-### Functional Requirements
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
+### 对于 AI 生成
+从用户提示创建此规范时：
+1. **标记所有歧义**：对任何您需要做的假设使用 [需要澄清：具体问题]
+2. **不要猜测**：如果提示没有指定某些内容（例如，"登录系统"没有认证方法），标记它
+3. **像测试员一样思考**：每个模糊需求都应该在"可测试且明确"检查清单项目中失败
+4. **常见未明确指定的领域**：
+   - 用户类型和权限
+   - 数据保留/删除策略
+   - 性能目标和规模
+   - 错误处理行为
+   - 集成要求
+   - 安全/合规需求
 
 ---
 
-## Review & Acceptance Checklist
-*GATE: Automated checks run during main() execution*
+## 用户场景和测试*（必需）*
 
-### Content Quality
-- [ ] No implementation details (languages, frameworks, APIs)
-- [ ] Focused on user value and business needs
-- [ ] Written for non-technical stakeholders
-- [ ] All mandatory sections completed
+### 主要用户故事
+[用通俗语言描述主要用户旅程]
 
-### Requirement Completeness
-- [ ] No [NEEDS CLARIFICATION] markers remain
-- [ ] Requirements are testable and unambiguous  
-- [ ] Success criteria are measurable
-- [ ] Scope is clearly bounded
-- [ ] Dependencies and assumptions identified
+### 验收场景
+1. **给定** [初始状态]，**当** [操作]，**那么** [预期结果]
+2. **给定** [初始状态]，**当** [操作]，**那么** [预期结果]
+
+### 边界情况
+- 当 [边界条件] 时会发生什么？
+- 系统如何处理 [错误场景]？
+
+## 需求*（必需）*
+
+### 功能需求
+- **FR-001**：系统必须 [特定能力，例如，"允许用户创建账户"]
+- **FR-002**：系统必须 [特定能力，例如，"验证电子邮件地址"]
+- **FR-003**：用户必须能够 [关键交互，例如，"重置密码"]
+- **FR-004**：系统必须 [数据需求，例如，"持久化用户偏好"]
+- **FR-005**：系统必须 [行为，例如，"记录所有安全事件"]
+
+*标记不清楚需求的示例：*
+- **FR-006**：系统必须通过 [需要澄清：未指定认证方法 - 电子邮件/密码、SSO、OAuth？] 认证用户
+- **FR-007**：系统必须保留用户数据 [需要澄清：未指定保留期]
+
+### 关键实体*（如果功能涉及数据则包含）*
+- **[实体 1]**：[它代表什么，关键属性无实现]
+- **[实体 2]**：[它代表什么，与其他实体的关系]
 
 ---
 
-## Execution Status
-*Updated by main() during processing*
+## 审查和验收检查清单
+*门控：在 main() 执行期间运行的自动检查*
 
-- [ ] User description parsed
-- [ ] Key concepts extracted
-- [ ] Ambiguities marked
-- [ ] User scenarios defined
-- [ ] Requirements generated
-- [ ] Entities identified
-- [ ] Review checklist passed
+### 内容质量
+- [ ] 无实现细节（语言、框架、API）
+- [ ] 专注于用户价值和业务需求
+- [ ] 为非技术利益相关者编写
+- [ ] 所有必需章节已完成
+
+### 需求完整性
+- [ ] 没有 [需要澄清] 标记
+- [ ] 需求可测试且明确
+- [ ] 成功标准可衡量
+- [ ] 范围明确界定
+- [ ] 依赖和假设已识别
+
+---
+
+## 执行状态
+*由 main() 在处理过程中更新*
+
+- [ ] 用户描述已解析
+- [ ] 关键概念已提取
+- [ ] 歧义已标记
+- [ ] 用户场景已定义
+- [ ] 需求已生成
+- [ ] 实体已识别
+- [ ] 审查检查清单已通过
 
 ---

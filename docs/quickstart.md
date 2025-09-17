@@ -1,122 +1,131 @@
-# Quick Start Guide
+# 快速开始指南
 
-This guide will help you get started with Spec-Driven Development using Spec Kit.
+本指南将帮助您使用 Spec Kit 开始规范驱动开发。
 
-> NEW: All automation scripts now provide both Bash (`.sh`) and PowerShell (`.ps1`) variants. The `specify` CLI auto-selects based on OS unless you pass `--script sh|ps`.
+> 新功能：所有自动化脚本现在都提供 Bash（`.sh`）和 PowerShell（`.ps1`）变体。`specify` CLI 根据操作系统自动选择，除非您传递 `--script sh|ps`。
 
-## The 4-Step Process
+## 4 步流程
 
-### 1. Install Specify
+### 1. 安装 Specify
 
-Initialize your project depending on the coding agent you're using:
+根据您使用的编码代理初始化项目：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <PROJECT_NAME>
 ```
 
-Pick script type explicitly (optional):
+明确选择脚本类型（可选）：
 ```bash
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME> --script ps  # Force PowerShell
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME> --script sh  # Force POSIX shell
+# 从官方仓库安装（英文版）
+uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME> --script ps  # 强制 PowerShell
+uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME> --script sh  # 强制 POSIX shell
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <PROJECT_NAME> --script ps  # 强制 PowerShell
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <PROJECT_NAME> --script sh  # 强制 POSIX shell
 ```
 
-### 2. Create the Spec
+### 2. 创建规范
 
-Use the `/specify` command to describe what you want to build. Focus on the **what** and **why**, not the tech stack.
+使用 `/specify` 命令描述您想要构建的内容。专注于**什么**和**为什么**，而不是技术栈。
 
 ```bash
-/specify Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
+/specify 构建一个应用程序，帮助我在单独的相册中整理照片。相册按日期分组，可以在主页上通过拖放重新组织。相册永远不会嵌套在其他相册中。在每个相册内，照片以瓦片式界面预览。
 ```
 
-### 3. Create a Technical Implementation Plan
+### 3. 创建技术实现计划
 
-Use the `/plan` command to provide your tech stack and architecture choices.
+使用 `/plan` 命令提供您的技术栈和架构选择。
 
 ```bash
-/plan The application uses Vite with minimal number of libraries. Use vanilla HTML, CSS, and JavaScript as much as possible. Images are not uploaded anywhere and metadata is stored in a local SQLite database.
+/plan 应用程序使用 Vite 和最少数量的库。尽可能使用原生 HTML、CSS 和 JavaScript。图像不上传到任何地方，元数据存储在本地 SQLite 数据库中。
 ```
 
-### 4. Break Down and Implement
+### 4. 分解并实现
 
-Use `/tasks` to create an actionable task list, then ask your agent to implement the feature.
+使用 `/tasks` 创建可操作的任务列表，然后让您的代理实现功能。
 
-## Detailed Example: Building Taskify
+## 详细示例：构建 Taskify
 
-Here's a complete example of building a team productivity platform:
+这是一个构建团队生产力平台的完整示例：
 
-### Step 1: Define Requirements with `/specify`
+### 步骤 1：使用 `/specify` 定义需求
 
 ```text
-Develop Taskify, a team productivity platform. It should allow users to create projects, add team members,
-assign tasks, comment and move tasks between boards in Kanban style. In this initial phase for this feature,
-let's call it "Create Taskify," let's have multiple users but the users will be declared ahead of time, predefined.
-I want five users in two different categories, one product manager and four engineers. Let's create three
-different sample projects. Let's have the standard Kanban columns for the status of each task, such as "To Do,"
-"In Progress," "In Review," and "Done." There will be no login for this application as this is just the very
-first testing thing to ensure that our basic features are set up. For each task in the UI for a task card,
-you should be able to change the current status of the task between the different columns in the Kanban work board.
-You should be able to leave an unlimited number of comments for a particular card. You should be able to, from that task
-card, assign one of the valid users. When you first launch Taskify, it's going to give you a list of the five users to pick
-from. There will be no password required. When you click on a user, you go into the main view, which displays the list of
-projects. When you click on a project, you open the Kanban board for that project. You're going to see the columns.
-You'll be able to drag and drop cards back and forth between different columns. You will see any cards that are
-assigned to you, the currently logged in user, in a different color from all the other ones, so you can quickly
-see yours. You can edit any comments that you make, but you can't edit comments that other people made. You can
-delete any comments that you made, but you can't delete comments anybody else made.
+开发 Taskify，一个团队生产力平台。它应该允许用户创建项目、添加团队成员、
+分配任务、评论并在看板样式的板之间移动任务。在这个功能的初始阶段，
+让我们称之为"创建 Taskify"，让我们有多个用户，但用户将提前声明，预定义。
+我想要五个用户分为两个不同类别，一个产品经理和四个工程师。让我们创建三个
+不同的示例项目。让我们为每个任务的状态设置标准的看板列，如"待办"、
+"进行中"、"审查中"和"完成"。此应用程序将没有登录，因为这只是
+第一个测试，以确保我们的基本功能已设置。对于任务卡片 UI 中的每个任务，
+您应该能够在看板工作板的不同列之间更改任务的当前状态。
+您应该能够为特定卡片留下无限数量的评论。您应该能够从该任务
+卡片中分配一个有效用户。当您首次启动 Taskify 时，它将为您提供五个用户列表供选择。
+不需要密码。当您点击用户时，您进入主视图，显示
+项目列表。当您点击项目时，您打开该项目的看板。您将看到列。
+您将能够在不同列之间拖放卡片。您将看到任何
+分配给您的卡片，当前登录用户，与其他所有卡片颜色不同，这样您可以快速
+看到您的。您可以编辑您发表的任何评论，但您不能编辑其他人发表的评论。您可以
+删除您发表的任何评论，但您不能删除其他人发表的任何评论。
 ```
 
-### Step 2: Refine the Specification
+### 步骤 2：细化规范
 
-After the initial specification is created, clarify any missing requirements:
+创建初始规范后，澄清任何缺失的需求：
 
 ```text
-For each sample project or project that you create there should be a variable number of tasks between 5 and 15
-tasks for each one randomly distributed into different states of completion. Make sure that there's at least
-one task in each stage of completion.
+对于您创建的每个示例项目或项目，应该有 5 到 15 个任务之间的可变数量
+任务，随机分布到不同的完成状态。确保每个完成阶段至少
+有一个任务。
 ```
 
-Also validate the specification checklist:
+还要验证规范检查清单：
 
 ```text
-Read the review and acceptance checklist, and check off each item in the checklist if the feature spec meets the criteria. Leave it empty if it does not.
+阅读审查和验收检查清单，如果功能规范符合标准，请勾选检查清单中的每个项目。如果不符合，请留空。
 ```
 
-### Step 3: Generate Technical Plan with `/plan`
+### 步骤 3：使用 `/plan` 生成技术计划
 
-Be specific about your tech stack and technical requirements:
+对您的技术栈和技术要求要具体：
 
 ```text
-We are going to generate this using .NET Aspire, using Postgres as the database. The frontend should use
-Blazor server with drag-and-drop task boards, real-time updates. There should be a REST API created with a projects API,
-tasks API, and a notifications API.
+我们将使用 .NET Aspire 生成这个，使用 Postgres 作为数据库。前端应该使用
+Blazor 服务器，具有拖放任务板和实时更新。应该创建一个 REST API，包含项目 API、
+任务 API 和通知 API。
 ```
 
-### Step 4: Validate and Implement
+### 步骤 4：验证并实现
 
-Have your AI agent audit the implementation plan:
+让您的 AI 代理审计实现计划：
 
 ```text
-Now I want you to go and audit the implementation plan and the implementation detail files.
-Read through it with an eye on determining whether or not there is a sequence of tasks that you need
-to be doing that are obvious from reading this. Because I don't know if there's enough here.
+现在我希望您去审计实现计划和实现详细文件。
+仔细阅读，着眼于确定是否有您需要做的任务序列
+从阅读中显而易见。因为我不知道这里是否有足够的内容。
 ```
 
-Finally, implement the solution:
+最后，实现解决方案：
 
 ```text
 implement specs/002-create-taskify/plan.md
 ```
 
-## Key Principles
+## 关键原则
 
-- **Be explicit** about what you're building and why
-- **Don't focus on tech stack** during specification phase
-- **Iterate and refine** your specifications before implementation
-- **Validate** the plan before coding begins
-- **Let the AI agent handle** the implementation details
+- **明确**您正在构建什么以及为什么
+- **不要专注于技术栈**在规范阶段
+- **迭代和细化**您的规范在实现之前
+- **验证**计划在编码开始之前
+- **让 AI 代理处理**实现细节
 
-## Next Steps
+## 下一步
 
-- Read the complete methodology for in-depth guidance
-- Check out more examples in the repository
-- Explore the source code on GitHub
+- 阅读完整的方法论以获得深入指导
+- 查看仓库中的更多示例
+- 在 GitHub 上探索源代码

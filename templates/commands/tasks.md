@@ -1,61 +1,61 @@
 ---
-description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
+description: 基于可用的设计工件为功能生成可操作的、依赖排序的 tasks.md。
 scripts:
   sh: scripts/bash/check-task-prerequisites.sh --json
   ps: scripts/powershell/check-task-prerequisites.ps1 -Json
 ---
 
-Given the context provided as an argument, do this:
+根据提供的上下文参数，执行以下操作：
 
-1. Run `{SCRIPT}` from repo root and parse FEATURE_DIR and AVAILABLE_DOCS list. All paths must be absolute.
-2. Load and analyze available design documents:
-   - Always read plan.md for tech stack and libraries
-   - IF EXISTS: Read data-model.md for entities
-   - IF EXISTS: Read contracts/ for API endpoints
-   - IF EXISTS: Read research.md for technical decisions
-   - IF EXISTS: Read quickstart.md for test scenarios
+1. 从仓库根目录运行 `{SCRIPT}` 并解析 FEATURE_DIR 和 AVAILABLE_DOCS 列表。所有路径必须是绝对路径。
+2. 加载并分析可用的设计文档：
+   - 始终读取 plan.md 了解技术栈和库
+   - 如果存在：读取 data-model.md 了解实体
+   - 如果存在：读取 contracts/ 了解 API 端点
+   - 如果存在：读取 research.md 了解技术决策
+   - 如果存在：读取 quickstart.md 了解测试场景
 
-   Note: Not all projects have all documents. For example:
-   - CLI tools might not have contracts/
-   - Simple libraries might not need data-model.md
-   - Generate tasks based on what's available
+   注意：并非所有项目都有所有文档。例如：
+   - CLI 工具可能没有 contracts/
+   - 简单库可能不需要 data-model.md
+   - 基于可用内容生成任务
 
-3. Generate tasks following the template:
-   - Use `/templates/tasks-template.md` as the base
-   - Replace example tasks with actual tasks based on:
-     * **Setup tasks**: Project init, dependencies, linting
-     * **Test tasks [P]**: One per contract, one per integration scenario
-     * **Core tasks**: One per entity, service, CLI command, endpoint
-     * **Integration tasks**: DB connections, middleware, logging
-     * **Polish tasks [P]**: Unit tests, performance, docs
+3. 按照模板生成任务：
+   - 使用 `/templates/tasks-template.md` 作为基础
+   - 用基于以下内容的实际任务替换示例任务：
+     * **设置任务**：项目初始化、依赖项、代码检查
+     * **测试任务 [P]**：每个合约一个，每个集成场景一个
+     * **核心任务**：每个实体、服务、CLI 命令、端点一个
+     * **集成任务**：数据库连接、中间件、日志
+     * **完善任务 [P]**：单元测试、性能、文档
 
-4. Task generation rules:
-   - Each contract file → contract test task marked [P]
-   - Each entity in data-model → model creation task marked [P]
-   - Each endpoint → implementation task (not parallel if shared files)
-   - Each user story → integration test marked [P]
-   - Different files = can be parallel [P]
-   - Same file = sequential (no [P])
+4. 任务生成规则：
+   - 每个合约文件 → 标记为 [P] 的合约测试任务
+   - 数据模型中的每个实体 → 标记为 [P] 的模型创建任务
+   - 每个端点 → 实现任务（如果共享文件则不并行）
+   - 每个用户故事 → 标记为 [P] 的集成测试
+   - 不同文件 = 可以并行 [P]
+   - 相同文件 = 顺序执行（无 [P]）
 
-5. Order tasks by dependencies:
-   - Setup before everything
-   - Tests before implementation (TDD)
-   - Models before services
-   - Services before endpoints
-   - Core before integration
-   - Everything before polish
+5. 按依赖关系排序任务：
+   - 设置在所有内容之前
+   - 测试在实现之前（TDD）
+   - 模型在服务之前
+   - 服务在端点之前
+   - 核心在集成之前
+   - 所有内容在完善之前
 
-6. Include parallel execution examples:
-   - Group [P] tasks that can run together
-   - Show actual Task agent commands
+6. 包含并行执行示例：
+   - 将可以一起运行的 [P] 任务分组
+   - 显示实际的 Task 代理命令
 
-7. Create FEATURE_DIR/tasks.md with:
-   - Correct feature name from implementation plan
-   - Numbered tasks (T001, T002, etc.)
-   - Clear file paths for each task
-   - Dependency notes
-   - Parallel execution guidance
+7. 创建 FEATURE_DIR/tasks.md，包含：
+   - 来自实现计划的正确功能名称
+   - 编号任务（T001、T002 等）
+   - 每个任务的清晰文件路径
+   - 依赖关系说明
+   - 并行执行指导
 
-Context for task generation: {ARGS}
+任务生成的上下文：{ARGS}
 
-The tasks.md should be immediately executable - each task must be specific enough that an LLM can complete it without additional context.
+tasks.md 应该立即可执行 - 每个任务必须足够具体，以便 LLM 无需额外上下文即可完成。

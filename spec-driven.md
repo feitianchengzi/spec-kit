@@ -1,10 +1,10 @@
-# Specification-Driven Development (SDD)
+# 规范驱动开发（SDD）
 
-## The Power Inversion
+## 权力倒置
 
-For decades, code has been king. Specifications served code—they were the scaffolding we built and then discarded once the "real work" of coding began. We wrote PRDs to guide development, created design docs to inform implementation, drew diagrams to visualize architecture. But these were always subordinate to the code itself. Code was truth. Everything else was, at best, good intentions. Code was the source of truth, as it moved forward, and spec's rarely kept pace. As the asset (code) and the implementation are one, it's not easy to have a parallel implementation without trying to build from the code.
+几十年来，代码一直是王者。规范服务于代码——它们是我们构建的脚手架，一旦编码的"真正工作"开始就被丢弃。我们编写 PRD 来指导开发，创建设计文档来告知实现，绘制图表来可视化架构。但这些总是从属于代码本身。代码就是真理。其他一切最多只是良好的意图。代码是真理的源泉，随着它的前进，规范很少能跟上步伐。由于资产（代码）和实现是一体的，如果不从代码构建，就很难有并行实现。
 
-Spec-Driven Development (SDD) inverts this power structure. Specifications don't serve code—code serves specifications. The (Product Requirements Document-Specification) PRD isn't a guide for implementation; it's the source that generates implementation. Technical plans aren't documents that inform coding; they're precise definitions that produce code. This isn't an incremental improvement to how we build software. It's a fundamental rethinking of what drives development.
+规范驱动开发（SDD）颠覆了这种权力结构。规范不服务于代码——代码服务于规范。产品需求文档-规范（PRD）不是实现的指南；它是生成实现的源泉。技术计划不是告知编码的文档；它们是产生代码的精确定义。这不是我们构建软件方式的渐进式改进。这是对驱动开发内容的根本性重新思考。
 
 The gap between specification and implementation has plagued software development since its inception. We've tried to bridge it with better documentation, more detailed requirements, stricter processes. These approaches fail because they accept the gap as inevitable. They try to narrow it but never eliminate it. SDD eliminates the gap by making specifications or and their concrete implementation plans born from the specification executable. When specifications to implementation plans generate code, there is no gap—only transformation.
 

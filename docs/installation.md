@@ -1,76 +1,108 @@
-# Installation Guide
+# 安装指南
 
-## Prerequisites
+## 先决条件
 
-- **Linux/macOS** (or Windows; PowerShell scripts now supported without WSL)
-- AI coding agent: [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://code.visualstudio.com/), or [Gemini CLI](https://github.com/google-gemini/gemini-cli)
-- [uv](https://docs.astral.sh/uv/) for package management
+- **Linux/macOS**（或 Windows；现在支持 PowerShell 脚本，无需 WSL）
+- AI 编码代理：[Claude Code](https://www.anthropic.com/claude-code)、[GitHub Copilot](https://code.visualstudio.com/) 或 [Gemini CLI](https://github.com/google-gemini/gemini-cli)
+- [uv](https://docs.astral.sh/uv/) 用于包管理
 - [Python 3.11+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-## Installation
+## 安装
 
-### Initialize a New Project
+### 选择安装源
 
-The easiest way to get started is to initialize a new project:
+Spec Kit 提供两种安装选项：
+
+- **官方仓库**（英文版）：`https://github.com/github/spec-kit.git`
+- **简体中文分支**：`https://github.com/feitianchengzi/spec-kit.git@zh-hans`
+
+简体中文分支包含完整的中文文档和界面，适合中文用户使用。
+
+### 初始化新项目
+
+最简单的开始方式是初始化一个新项目：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <PROJECT_NAME>
 ```
 
-Or initialize in the current directory:
+或在当前目录中初始化：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init --here
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init --here
 ```
 
-### Specify AI Agent
+### 指定 AI 代理
 
-You can proactively specify your AI agent during initialization:
+您可以在初始化期间主动指定您的 AI 代理：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --ai claude
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --ai gemini
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --ai copilot
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --ai claude
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --ai gemini
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --ai copilot
 ```
 
-### Specify Script Type (Shell vs PowerShell)
+### 指定脚本类型（Shell vs PowerShell）
 
-All automation scripts now have both Bash (`.sh`) and PowerShell (`.ps1`) variants.
+所有自动化脚本现在都有 Bash（`.sh`）和 PowerShell（`.ps1`）变体。
 
-Auto behavior:
-- Windows default: `ps`
-- Other OS default: `sh`
-- Interactive mode: you'll be prompted unless you pass `--script`
+自动行为：
+- Windows 默认：`ps`
+- 其他操作系统默认：`sh`
+- 交互模式：除非您传递 `--script`，否则会提示您
 
-Force a specific script type:
+强制特定脚本类型：
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --script sh
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --script ps
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --script sh
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --script ps
 ```
 
-### Ignore Agent Tools Check
+### 忽略代理工具检查
 
-If you prefer to get the templates without checking for the right tools:
+如果您希望在不检查正确工具的情况下获取模板：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <project_name> --ai claude --ignore-agent-tools
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <project_name> --ai claude --ignore-agent-tools
 ```
 
-## Verification
+## 验证
 
-After initialization, you should see the following commands available in your AI agent:
-- `/specify` - Create specifications
-- `/plan` - Generate implementation plans  
-- `/tasks` - Break down into actionable tasks
+初始化后，您应该在 AI 代理中看到以下可用命令：
+- `/specify` - 创建规范
+- `/plan` - 生成实现计划
+- `/tasks` - 分解为可操作的任务
 
-The `.specify/scripts` directory will contain both `.sh` and `.ps1` scripts.
+`.specify/scripts` 目录将包含 `.sh` 和 `.ps1` 脚本。
 
-## Troubleshooting
+## 故障排除
 
-### Git Credential Manager on Linux
+### Linux 上的 Git 凭据管理器
 
-If you're having issues with Git authentication on Linux, you can install Git Credential Manager:
+如果您在 Linux 上遇到 Git 身份验证问题，可以安装 Git 凭据管理器：
 
 ```bash
 #!/usr/bin/env bash

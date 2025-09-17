@@ -1,191 +1,195 @@
 <div align="center">
     <img src="./media/logo_small.webp"/>
     <h1>🌱 Spec Kit</h1>
-    <h3><em>Build high-quality software faster.</em></h3>
+    <h3><em>更快构建高质量软件。</em></h3>
 </div>
 
 <p align="center">
-    <strong>An effort to allow organizations to focus on product scenarios rather than writing undifferentiated code with the help of Spec-Driven Development.</strong>
+    <strong>通过规范驱动开发帮助组织专注于产品场景而非编写无差异代码的努力。</strong>
 </p>
 
 [![Release](https://github.com/github/spec-kit/actions/workflows/release.yml/badge.svg)](https://github.com/github/spec-kit/actions/workflows/release.yml)
 
 ---
 
-## Table of Contents
+## 目录
 
-- [🤔 What is Spec-Driven Development?](#-what-is-spec-driven-development)
-- [⚡ Get started](#-get-started)
-- [📽️ Video Overview](#️-video-overview)
-- [🔧 Specify CLI Reference](#-specify-cli-reference)
-- [📚 Core philosophy](#-core-philosophy)
-- [🌟 Development phases](#-development-phases)
-- [🎯 Experimental goals](#-experimental-goals)
-- [🔧 Prerequisites](#-prerequisites)
-- [📖 Learn more](#-learn-more)
-- [📋 Detailed process](#-detailed-process)
-- [🔍 Troubleshooting](#-troubleshooting)
-- [👥 Maintainers](#-maintainers)
-- [💬 Support](#-support)
-- [🙏 Acknowledgements](#-acknowledgements)
-- [📄 License](#-license)
+- [🤔 什么是规范驱动开发？](#-什么是规范驱动开发)
+- [⚡ 开始使用](#-开始使用)
+- [📽️ 视频概览](#️-视频概览)
+- [🔧 Specify CLI 参考](#-specify-cli-参考)
+- [📚 核心理念](#-核心理念)
+- [🌟 开发阶段](#-开发阶段)
+- [🎯 实验目标](#-实验目标)
+- [🔧 先决条件](#-先决条件)
+- [📖 了解更多](#-了解更多)
+- [📋 详细流程](#-详细流程)
+- [🔍 故障排除](#-故障排除)
+- [👥 维护者](#-维护者)
+- [💬 支持](#-支持)
+- [🙏 致谢](#-致谢)
+- [📄 许可证](#-许可证)
 
-## 🤔 What is Spec-Driven Development?
+## 🤔 什么是规范驱动开发？
 
-Spec-Driven Development **flips the script** on traditional software development. For decades, code has been king — specifications were just scaffolding we built and discarded once the "real work" of coding began. Spec-Driven Development changes this: **specifications become executable**, directly generating working implementations rather than just guiding them.
+规范驱动开发**颠覆了**传统软件开发。几十年来，代码一直是王者——规范只是我们构建的脚手架，一旦编码的"真正工作"开始就被丢弃。规范驱动开发改变了这一点：**规范变得可执行**，直接生成可工作的实现，而不仅仅是指导它们。
 
-## ⚡ Get started
+## ⚡ 开始使用
 
-### 1. Install Specify
+### 1. 安装 Specify
 
-Initialize your project depending on the coding agent you're using:
+根据您使用的编码代理初始化项目：
 
 ```bash
+# 从官方仓库安装（英文版）
 uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+
+# 从简体中文分支安装
+uvx --from git+https://github.com/feitianchengzi/spec-kit.git@zh-hans specify-zh init <PROJECT_NAME>
 ```
 
-### 2. Create the spec
+### 2. 创建规范
 
-Use the **`/specify`** command to describe what you want to build. Focus on the **what** and **why**, not the tech stack.
+使用 **`/specify`** 命令描述您想要构建的内容。专注于**什么**和**为什么**，而不是技术栈。
 
 ```bash
-/specify Build an application that can help me organize my photos in separate photo albums. Albums are grouped by date and can be re-organized by dragging and dropping on the main page. Albums are never in other nested albums. Within each album, photos are previewed in a tile-like interface.
+/specify 构建一个应用程序，帮助我在单独的相册中整理照片。相册按日期分组，可以在主页上通过拖放重新组织。相册永远不会嵌套在其他相册中。在每个相册内，照片以瓦片式界面预览。
 ```
 
-### 3. Create a technical implementation plan
+### 3. 创建技术实现计划
 
-Use the **`/plan`** command to provide your tech stack and architecture choices.
+使用 **`/plan`** 命令提供您的技术栈和架构选择。
 
 ```bash
-/plan The application uses Vite with minimal number of libraries. Use vanilla HTML, CSS, and JavaScript as much as possible. Images are not uploaded anywhere and metadata is stored in a local SQLite database.
+/plan 应用程序使用 Vite 和最少数量的库。尽可能使用原生 HTML、CSS 和 JavaScript。图像不上传到任何地方，元数据存储在本地 SQLite 数据库中。
 ```
 
-### 4. Break down and implement
+### 4. 分解并实现
 
-Use **`/tasks`** to create an actionable task list, then ask your agent to implement the feature.
+使用 **`/tasks`** 创建可操作的任务列表，然后让您的代理实现功能。
 
-For detailed step-by-step instructions, see our [comprehensive guide](./spec-driven.md).
+有关详细的分步说明，请参阅我们的[综合指南](./spec-driven.md)。
 
-## 📽️ Video Overview
+## 📽️ 视频概览
 
-Want to see Spec Kit in action? Watch our [video overview](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)!
+想看看 Spec Kit 的实际应用吗？观看我们的[视频概览](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)！
 
-[![Spec Kit video header](/media/spec-kit-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
+[![Spec Kit 视频头图](/media/spec-kit-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
 
-## 🔧 Specify CLI Reference
+## 🔧 Specify CLI 参考
 
-The `specify` command supports the following options:
+`specify` 命令支持以下选项：
 
-### Commands
+### 命令
 
-| Command     | Description                                                    |
+| 命令     | 描述                                                    |
 |-------------|----------------------------------------------------------------|
-| `init`      | Initialize a new Specify project from the latest template      |
-| `check`     | Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`) |
+| `init`      | 从最新模板初始化新的 Specify 项目      |
+| `check`     | 检查已安装的工具（`git`、`claude`、`gemini`、`code`/`code-insiders`、`cursor-agent`） |
 
-### `specify init` Arguments & Options
+### `specify init` 参数和选项
 
-| Argument/Option        | Type     | Description                                                                  |
+| 参数/选项        | 类型     | 描述                                                                  |
 |------------------------|----------|------------------------------------------------------------------------------|
-| `<project-name>`       | Argument | Name for your new project directory (optional if using `--here`)            |
-| `--ai`                 | Option   | AI assistant to use: `claude`, `gemini`, `copilot`, or `cursor`             |
-| `--script`             | Option   | Script variant to use: `sh` (bash/zsh) or `ps` (PowerShell)                 |
-| `--ignore-agent-tools` | Flag     | Skip checks for AI agent tools like Claude Code                             |
-| `--no-git`             | Flag     | Skip git repository initialization                                          |
-| `--here`               | Flag     | Initialize project in the current directory instead of creating a new one   |
-| `--skip-tls`           | Flag     | Skip SSL/TLS verification (not recommended)                                 |
-| `--debug`              | Flag     | Enable detailed debug output for troubleshooting                            |
+| `<project-name>`       | 参数 | 新项目目录的名称（如果使用 `--here` 则为可选）            |
+| `--ai`                 | 选项   | 使用的 AI 助手：`claude`、`gemini`、`copilot` 或 `cursor`             |
+| `--script`             | 选项   | 使用的脚本变体：`sh`（bash/zsh）或 `ps`（PowerShell）                 |
+| `--ignore-agent-tools` | 标志     | 跳过 AI 代理工具检查，如 Claude Code                             |
+| `--no-git`             | 标志     | 跳过 git 仓库初始化                                          |
+| `--here`               | 标志     | 在当前目录中初始化项目而不是创建新目录   |
+| `--skip-tls`           | 标志     | 跳过 SSL/TLS 验证（不推荐）                                 |
+| `--debug`              | 标志     | 启用详细的调试输出以进行故障排除                            |
 
-### Examples
+### 示例
 
 ```bash
-# Basic project initialization
+# 基本项目初始化
 specify init my-project
 
-# Initialize with specific AI assistant
+# 使用特定 AI 助手初始化
 specify init my-project --ai claude
 
-# Initialize with Cursor support
+# 使用 Cursor 支持初始化
 specify init my-project --ai cursor
 
-# Initialize with PowerShell scripts (Windows/cross-platform)
+# 使用 PowerShell 脚本初始化（Windows/跨平台）
 specify init my-project --ai copilot --script ps
 
-# Initialize in current directory
+# 在当前目录中初始化
 specify init --here --ai copilot
 
-# Skip git initialization
+# 跳过 git 初始化
 specify init my-project --ai gemini --no-git
 
-# Enable debug output for troubleshooting
+# 启用调试输出以进行故障排除
 specify init my-project --ai claude --debug
 
-# Check system requirements
+# 检查系统要求
 specify check
 ```
 
-## 📚 Core philosophy
+## 📚 核心理念
 
-Spec-Driven Development is a structured process that emphasizes:
+规范驱动开发是一个强调以下内容的结构化过程：
 
-- **Intent-driven development** where specifications define the "_what_" before the "_how_"
-- **Rich specification creation** using guardrails and organizational principles
-- **Multi-step refinement** rather than one-shot code generation from prompts
-- **Heavy reliance** on advanced AI model capabilities for specification interpretation
+- **意图驱动开发**，规范在"如何"之前定义"什么"
+- **丰富的规范创建**，使用护栏和组织原则
+- **多步骤细化**，而不是从提示词一次性生成代码
+- **高度依赖**先进 AI 模型能力进行规范解释
 
-## 🌟 Development phases
+## 🌟 开发阶段
 
-| Phase | Focus | Key Activities |
+| 阶段 | 重点 | 关键活动 |
 |-------|-------|----------------|
-| **0-to-1 Development** ("Greenfield") | Generate from scratch | <ul><li>Start with high-level requirements</li><li>Generate specifications</li><li>Plan implementation steps</li><li>Build production-ready applications</li></ul> |
-| **Creative Exploration** | Parallel implementations | <ul><li>Explore diverse solutions</li><li>Support multiple technology stacks & architectures</li><li>Experiment with UX patterns</li></ul> |
-| **Iterative Enhancement** ("Brownfield") | Brownfield modernization | <ul><li>Add features iteratively</li><li>Modernize legacy systems</li><li>Adapt processes</li></ul> |
+| **0到1开发**（"绿地"） | 从零生成 | <ul><li>从高级需求开始</li><li>生成规范</li><li>规划实现步骤</li><li>构建生产就绪的应用程序</li></ul> |
+| **创意探索** | 并行实现 | <ul><li>探索多样化解决方案</li><li>支持多种技术栈和架构</li><li>实验 UX 模式</li></ul> |
+| **迭代增强**（"棕地"） | 棕地现代化 | <ul><li>迭代添加功能</li><li>现代化遗留系统</li><li>适应流程</li></ul> |
 
-## 🎯 Experimental goals
+## 🎯 实验目标
 
-Our research and experimentation focus on:
+我们的研究和实验专注于：
 
-### Technology independence
+### 技术独立性
 
-- Create applications using diverse technology stacks
-- Validate the hypothesis that Spec-Driven Development is a process not tied to specific technologies, programming languages, or frameworks
+- 使用多样化技术栈创建应用程序
+- 验证规范驱动开发是不绑定特定技术、编程语言或框架的过程这一假设
 
-### Enterprise constraints
+### 企业约束
 
-- Demonstrate mission-critical application development
-- Incorporate organizational constraints (cloud providers, tech stacks, engineering practices)
-- Support enterprise design systems and compliance requirements
+- 演示关键任务应用程序开发
+- 融入组织约束（云提供商、技术栈、工程实践）
+- 支持企业设计系统和合规要求
 
-### User-centric development
+### 以用户为中心的开发
 
-- Build applications for different user cohorts and preferences
-- Support various development approaches (from vibe-coding to AI-native development)
+- 为不同用户群体和偏好构建应用程序
+- 支持各种开发方法（从氛围编码到 AI 原生开发）
 
-### Creative & iterative processes
+### 创意和迭代过程
 
-- Validate the concept of parallel implementation exploration
-- Provide robust iterative feature development workflows
-- Extend processes to handle upgrades and modernization tasks
+- 验证并行实现探索的概念
+- 提供强大的迭代功能开发工作流
+- 扩展流程以处理升级和现代化任务
 
-## 🔧 Prerequisites
+## 🔧 先决条件
 
-- **Linux/macOS** (or WSL2 on Windows)
-- AI coding agent: [Claude Code](https://www.anthropic.com/claude-code), [GitHub Copilot](https://code.visualstudio.com/), [Gemini CLI](https://github.com/google-gemini/gemini-cli), or [Cursor](https://cursor.sh/)
-- [uv](https://docs.astral.sh/uv/) for package management
+- **Linux/macOS**（或 Windows 上的 WSL2）
+- AI 编码代理：[Claude Code](https://www.anthropic.com/claude-code)、[GitHub Copilot](https://code.visualstudio.com/)、[Gemini CLI](https://github.com/google-gemini/gemini-cli) 或 [Cursor](https://cursor.sh/)
+- [uv](https://docs.astral.sh/uv/) 用于包管理
 - [Python 3.11+](https://www.python.org/downloads/)
 - [Git](https://git-scm.com/downloads)
 
-## 📖 Learn more
+## 📖 了解更多
 
-- **[Complete Spec-Driven Development Methodology](./spec-driven.md)** - Deep dive into the full process
-- **[Detailed Walkthrough](#-detailed-process)** - Step-by-step implementation guide
+- **[完整的规范驱动开发方法论](./spec-driven.md)** - 深入了解完整流程
+- **[详细演练](#-详细流程)** - 分步实现指南
 
 ---
 
-## 📋 Detailed process
+## 📋 详细流程
 
 <details>
-<summary>Click to expand the detailed step-by-step walkthrough</summary>
+<summary>点击展开详细的分步演练</summary>
 
 You can use the Specify CLI to bootstrap your project, which will bring in the required artifacts in your environment. Run:
 
@@ -404,11 +408,11 @@ Once the implementation step is done, ask Claude Code to try to run the applicat
 
 ---
 
-## 🔍 Troubleshooting
+## 🔍 故障排除
 
-### Git Credential Manager on Linux
+### Linux 上的 Git 凭据管理器
 
-If you're having issues with Git authentication on Linux, you can install Git Credential Manager:
+如果您在 Linux 上遇到 Git 身份验证问题，可以安装 Git 凭据管理器：
 
 ```bash
 #!/usr/bin/env bash
@@ -423,19 +427,19 @@ echo "Cleaning up..."
 rm gcm-linux_amd64.2.6.1.deb
 ```
 
-## 👥 Maintainers
+## 👥 维护者
 
 - Den Delimarsky ([@localden](https://github.com/localden))
 - John Lam ([@jflam](https://github.com/jflam))
 
-## 💬 Support
+## 💬 支持
 
-For support, please open a [GitHub issue](https://github.com/github/spec-kit/issues/new). We welcome bug reports, feature requests, and questions about using Spec-Driven Development.
+如需支持，请打开 [GitHub 问题](https://github.com/github/spec-kit/issues/new)。我们欢迎错误报告、功能请求和关于使用规范驱动开发的问题。
 
-## 🙏 Acknowledgements
+## 🙏 致谢
 
-This project is heavily influenced by and based on the work and research of [John Lam](https://github.com/jflam).
+这个项目深受 [John Lam](https://github.com/jflam) 的工作和研究影响和启发。
 
-## 📄 License
+## 📄 许可证
 
-This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) file for the full terms.
+本项目根据 MIT 开源许可证的条款获得许可。请参阅 [LICENSE](./LICENSE) 文件了解完整条款。
