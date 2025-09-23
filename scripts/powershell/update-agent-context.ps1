@@ -7,14 +7,14 @@ $repoRoot = git rev-parse --show-toplevel
 $currentBranch = git rev-parse --abbrev-ref HEAD
 $featureDir = Join-Path $repoRoot "specs/$currentBranch"
 $newPlan = Join-Path $featureDir 'plan.md'
-if (-not (Test-Path $newPlan)) { Write-Error "ERROR: No plan.md found at $newPlan"; exit 1 }
+if (-not (Test-Path $newPlan)) { Write-Error "错误：未找到plan.md at $newPlan"; exit 1 }
 
 $claudeFile = Join-Path $repoRoot 'CLAUDE.md'
 $geminiFile = Join-Path $repoRoot 'GEMINI.md'
 $copilotFile = Join-Path $repoRoot '.github/copilot-instructions.md'
 $cursorFile = Join-Path $repoRoot '.cursor/rules/specify-rules.mdc'
 
-Write-Output "=== Updating agent context files for feature $currentBranch ==="
+Write-Output "=== 更新功能的代理上下文文件 $currentBranch ==="
 
 function Get-PlanValue($pattern) {
     if (-not (Test-Path $newPlan)) { return '' }
@@ -34,18 +34,18 @@ function Initialize-AgentFile($targetFile, $agentName) {
     $template = Join-Path $repoRoot '.specify/templates/agent-file-template.md'
     if (-not (Test-Path $template)) { Write-Error "Template not found: $template"; return }
     $content = Get-Content $template -Raw
-    $content = $content.Replace('[PROJECT NAME]', (Split-Path $repoRoot -Leaf))
-    $content = $content.Replace('[DATE]', (Get-Date -Format 'yyyy-MM-dd'))
-    $content = $content.Replace('[EXTRACTED FROM ALL PLAN.MD FILES]', "- $newLang + $newFramework ($currentBranch)")
+    $content = $content.Replace('[项目名称]', (Split-Path $repoRoot -Leaf))
+    $content = $content.Replace('[日期]', (Get-Date -Format 'yyyy-MM-dd'))
+    $content = $content.Replace('[从所有计划文件中提取]', "- $newLang + $newFramework ($currentBranch)")
     if ($newProjectType -match 'web') { $structure = "backend/`nfrontend/`ntests/" } else { $structure = "src/`ntests/" }
-    $content = $content.Replace('[ACTUAL STRUCTURE FROM PLANS]', $structure)
+    $content = $content.Replace('[从计划中的实际结构]', $structure)
     if ($newLang -match 'Python') { $commands = 'cd src && pytest && ruff check .' }
     elseif ($newLang -match 'Rust') { $commands = 'cargo test && cargo clippy' }
     elseif ($newLang -match 'JavaScript|TypeScript') { $commands = 'npm test && npm run lint' }
     else { $commands = "# Add commands for $newLang" }
-    $content = $content.Replace('[ONLY COMMANDS FOR ACTIVE TECHNOLOGIES]', $commands)
-    $content = $content.Replace('[LANGUAGE-SPECIFIC, ONLY FOR LANGUAGES IN USE]', "${newLang}: Follow standard conventions")
-    $content = $content.Replace('[LAST 3 FEATURES AND WHAT THEY ADDED]', "- ${currentBranch}: Added ${newLang} + ${newFramework}")
+    $content = $content.Replace('[仅用于活跃技术的命令]', $commands)
+    $content = $content.Replace('[特定语言，仅用于正在使用的语言]', "${newLang}: Follow standard conventions")
+    $content = $content.Replace('[最近3个功能及其添加内容]', "- ${currentBranch}: Added ${newLang} + ${newFramework}")
     $content | Set-Content $targetFile -Encoding UTF8
 }
 
@@ -63,7 +63,7 @@ function Update-AgentFile($targetFile, $agentName) {
     }
     $content = [regex]::Replace($content, 'Last updated: \d{4}-\d{2}-\d{2}', "Last updated: $(Get-Date -Format 'yyyy-MM-dd')")
     $content | Set-Content $targetFile -Encoding UTF8
-    Write-Output "✅ $agentName context file updated successfully"
+    Write-Output "✅ $agentName 上下文文件更新成功"
 }
 
 switch ($AgentType) {
@@ -81,18 +81,18 @@ switch ($AgentType) {
             if (Test-Path $pair.file) { Update-AgentFile $pair.file $pair.name }
         }
         if (-not (Test-Path $claudeFile) -and -not (Test-Path $geminiFile) -and -not (Test-Path $copilotFile) -and -not (Test-Path $cursorFile)) {
-            Write-Output 'No agent context files found. Creating Claude Code context file by default.'
+            Write-Output '未找到代理上下文文件。默认创建Claude Code上下文文件.'
             Update-AgentFile $claudeFile 'Claude Code'
         }
     }
-    Default { Write-Error "ERROR: Unknown agent type '$AgentType'. Use: claude, gemini, copilot, cursor or leave empty for all."; exit 1 }
+    Default { Write-Error "错误：未知代理类型 '$AgentType'. 使用：claude、gemini、copilot、cursor 或留空以处理所有."; exit 1 }
 }
 
 Write-Output ''
-Write-Output 'Summary of changes:'
-if ($newLang) { Write-Output "- Added language: $newLang" }
-if ($newFramework) { Write-Output "- Added framework: $newFramework" }
-if ($newDb -and $newDb -ne 'N/A') { Write-Output "- Added database: $newDb" }
+Write-Output '更改摘要:'
+if ($newLang) { Write-Output "- 添加语言: $newLang" }
+if ($newFramework) { Write-Output "- 添加框架: $newFramework" }
+if ($newDb -and $newDb -ne 'N/A') { Write-Output "- 添加数据库: $newDb" }
 
 Write-Output ''
-Write-Output 'Usage: ./update-agent-context.ps1 [claude|gemini|copilot|cursor]'
+Write-Output '用法： ./update-agent-context.ps1 [claude|gemini|copilot|cursor]'

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 同步 master 分支更新并翻译所有 .md 文件为简体中文
+# Git 同步工具 - 同步 main 分支更新
 # 这是用于维护 spec-kit 项目本身的工具
 
 set -euo pipefail
@@ -108,47 +108,10 @@ merge_main_updates() {
     fi
 }
 
-# 扫描 .md 文件
-scan_md_files() {
-    log_info "扫描 .md 文件..."
-    
-    # 扫描指定的目录和根目录
-    local target_dirs=("docs" "memory" "templates" ".")
-    local md_files=()
-    
-    for dir in "${target_dirs[@]}"; do
-        if [ -d "$dir" ]; then
-            if [ "$dir" = "." ]; then
-                log_info "  扫描目录: 根目录/"
-                while IFS= read -r -d '' file; do
-                    # 排除子目录中的文件，只扫描根目录
-                    if [[ "$file" == "./"* ]] && [[ "$file" != "./docs/"* ]] && [[ "$file" != "./memory/"* ]] && [[ "$file" != "./templates/"* ]] && [[ "$file" != "./sync-and-translate/"* ]] && [[ "$file" != "./.cursor/"* ]]; then
-                        md_files+=("$file")
-                        echo "    - $file"
-                    fi
-                done < <(find "$dir" -maxdepth 1 -name "*.md" -type f -print0)
-            else
-                log_info "  扫描目录: $dir/"
-                while IFS= read -r -d '' file; do
-                    md_files+=("$file")
-                    echo "    - $file"
-                done < <(find "$dir" -name "*.md" -type f -print0)
-            fi
-        else
-            log_warning "  目录不存在: $dir/"
-        fi
-    done
-    
-    log_info "找到 ${#md_files[@]} 个 .md 文件"
-    
-    # 保存文件列表到临时文件
-    printf '%s\n' "${md_files[@]}" > /tmp/md_files_list.txt
-    log_info "文件列表已保存到 /tmp/md_files_list.txt"
-}
 
 # 主函数
 main() {
-    log_info "开始同步和翻译流程..."
+    log_info "开始 Git 同步流程..."
     
     # 检查环境
     check_git_repo
@@ -159,12 +122,8 @@ main() {
         merge_main_updates
     fi
     
-    # 扫描文件
-    scan_md_files
-    
     log_success "Git 同步完成！"
-    log_info "请使用 Cursor Command 'Sync and Translate' 进行翻译工作"
-    log_info "翻译完成后，请检查翻译质量并提交更改"
+    log_info "工作目录已更新到最新状态"
 }
 
 # 执行主函数

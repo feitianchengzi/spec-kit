@@ -7,14 +7,14 @@ ARGS=()
 for arg in "$@"; do
     case "$arg" in
         --json) JSON_MODE=true ;;
-        --help|-h) echo "Usage: $0 [--json] <feature_description>"; exit 0 ;;
+        --help|-h) echo "用法： $0 [--json] <feature_description>"; exit 0 ;;
         *) ARGS+=("$arg") ;;
     esac
 done
 
 FEATURE_DESCRIPTION="${ARGS[*]}"
 if [ -z "$FEATURE_DESCRIPTION" ]; then
-    echo "Usage: $0 [--json] <feature_description>" >&2
+    echo "用法： $0 [--json] <feature_description>" >&2
     exit 1
 fi
 

@@ -1,4 +1,4 @@
-# 同步 master 分支更新并翻译所有 .md 文件为简体中文
+# Git 同步工具 - 同步 main 分支更新
 # 这是用于维护 spec-kit 项目本身的工具
 
 param(
@@ -124,52 +124,10 @@ function Merge-MainUpdates {
     }
 }
 
-# 扫描 .md 文件
-function Get-MdFiles {
-    Write-LogInfo "扫描 .md 文件..."
-    
-    # 扫描指定的目录和根目录
-    $targetDirs = @("docs", "memory", "templates", ".")
-    $mdFiles = @()
-    
-    foreach ($dir in $targetDirs) {
-        if (Test-Path -Path $dir -PathType Container) {
-            if ($dir -eq ".") {
-                Write-LogInfo "  扫描目录: 根目录/"
-                $files = Get-ChildItem -Path $dir -Filter "*.md" -File | ForEach-Object { $_.FullName }
-                foreach ($file in $files) {
-                    $relativePath = [System.IO.Path]::GetRelativePath($PWD, $file)
-                    # 排除子目录中的文件，只扫描根目录
-                    if ($relativePath -notlike "docs\*" -and $relativePath -notlike "memory\*" -and $relativePath -notlike "templates\*" -and $relativePath -notlike "sync-and-translate\*" -and $relativePath -notlike ".cursor\*") {
-                        $mdFiles += $file
-                        Write-Host "    - $file"
-                    }
-                }
-            } else {
-                Write-LogInfo "  扫描目录: $dir/"
-                $files = Get-ChildItem -Path $dir -Filter "*.md" -Recurse -File | ForEach-Object { $_.FullName }
-                foreach ($file in $files) {
-                    $mdFiles += $file
-                    Write-Host "    - $file"
-                }
-            }
-        } else {
-            Write-LogWarning "  目录不存在: $dir/"
-        }
-    }
-    
-    Write-LogInfo "找到 $($mdFiles.Count) 个 .md 文件"
-    
-    # 保存文件列表到临时文件
-    $mdFiles | Out-File -FilePath "$env:TEMP\md_files_list.txt" -Encoding UTF8
-    Write-LogInfo "文件列表已保存到 $env:TEMP\md_files_list.txt"
-    
-    return $mdFiles
-}
 
 # 主函数
 function Main {
-    Write-LogInfo "开始同步和翻译流程..."
+    Write-LogInfo "开始 Git 同步流程..."
     
     # 检查环境
     if (-not (Test-GitRepository)) {
@@ -184,12 +142,8 @@ function Main {
         Merge-MainUpdates
     }
     
-    # 扫描文件
-    $null = Get-MdFiles
-    
     Write-LogSuccess "Git 同步完成！"
-    Write-LogInfo "请使用 Cursor Command 'Sync and Translate' 进行翻译工作"
-    Write-LogInfo "翻译完成后，请检查翻译质量并提交更改"
+    Write-LogInfo "工作目录已更新到最新状态"
 }
 
 # 执行主函数

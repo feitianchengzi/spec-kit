@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference = 'Stop'
 
 if (-not $FeatureDescription -or $FeatureDescription.Count -eq 0) {
-    Write-Error "Usage: ./create-new-feature.ps1 [-Json] <feature description>"; exit 1
+    Write-Error "用法： ./create-new-feature.ps1 [-Json] <feature description>"; exit 1
 }
 $featureDesc = ($FeatureDescription -join ' ').Trim()
 

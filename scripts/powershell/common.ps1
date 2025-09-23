@@ -12,8 +12,8 @@ function Get-CurrentBranch {
 function Test-FeatureBranch {
     param([string]$Branch)
     if ($Branch -notmatch '^[0-9]{3}-') {
-        Write-Output "ERROR: Not on a feature branch. Current branch: $Branch"
-        Write-Output "Feature branches should be named like: 001-feature-name"
+        Write-Output "错误：不在功能分支上. Current branch: $Branch"
+        Write-Output "功能分支应命名为: 001-feature-name"
         return $false
     }
     return $true

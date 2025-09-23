@@ -7,8 +7,8 @@ get_current_branch() { git rev-parse --abbrev-ref HEAD; }
 check_feature_branch() {
     local branch="$1"
     if [[ ! "$branch" =~ ^[0-9]{3}- ]]; then
-        echo "ERROR: Not on a feature branch. Current branch: $branch" >&2
-        echo "Feature branches should be named like: 001-feature-name" >&2
+        echo "错误：不在功能分支上. Current branch: $branch" >&2
+        echo "功能分支应命名为: 001-feature-name" >&2
         return 1
     fi; return 0
 }

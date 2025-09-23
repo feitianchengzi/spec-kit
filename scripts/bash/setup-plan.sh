@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 JSON_MODE=false
-for arg in "$@"; do case "$arg" in --json) JSON_MODE=true ;; --help|-h) echo "Usage: $0 [--json]"; exit 0 ;; esac; done
+for arg in "$@"; do case "$arg" in --json) JSON_MODE=true ;; --help|-h) echo "用法： $0 [--json]"; exit 0 ;; esac; done
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 eval $(get_feature_paths)

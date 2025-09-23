@@ -8,13 +8,13 @@ $paths = Get-FeaturePathsEnv
 if (-not (Test-FeatureBranch -Branch $paths.CURRENT_BRANCH)) { exit 1 }
 
 if (-not (Test-Path $paths.FEATURE_DIR -PathType Container)) {
-    Write-Output "ERROR: Feature directory not found: $($paths.FEATURE_DIR)"
-    Write-Output "Run /specify first to create the feature structure."
+    Write-Output "错误：未找到功能目录: $($paths.FEATURE_DIR)"
+    Write-Output "先运行/specify创建功能结构."
     exit 1
 }
 if (-not (Test-Path $paths.IMPL_PLAN -PathType Leaf)) {
-    Write-Output "ERROR: plan.md not found in $($paths.FEATURE_DIR)"
-    Write-Output "Run /plan first to create the plan."
+    Write-Output "错误：未找到plan.md in $($paths.FEATURE_DIR)"
+    Write-Output "先运行/plan创建计划."
     exit 1
 }
 
