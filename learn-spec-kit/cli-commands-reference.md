@@ -47,7 +47,7 @@ specify init [PROJECT_NAME] [OPTIONS]
 
 | 选项 | 类型 | 默认值 | 描述 |
 |------|------|--------|------|
-| `--ai` | 字符串 | 交互选择 | 指定 AI 助手 (claude, gemini, copilot, cursor) |
+| `--ai` | 字符串 | 交互选择 | 指定 AI 助手 (claude, gemini, copilot, cursor, qwen, opencode, windsurf, codex, kilocode, auggie, roo) |
 | `--script` | 字符串 | 自动检测 | 指定脚本类型 (sh, ps) |
 | `--ignore-agent-tools` | 布尔 | False | 跳过 AI 代理工具检查 |
 | `--no-git` | 布尔 | False | 跳过 Git 仓库初始化 |
@@ -160,6 +160,13 @@ Choose your AI assistant:
   claude: Claude Code
   gemini: Gemini CLI
   cursor: Cursor
+  qwen: Qwen Code
+  opencode: opencode
+  windsurf: Windsurf
+  codex: Codex CLI
+  kilocode: Kilo Code
+  auggie: Auggie CLI
+  roo: Roo Code
 
 Use ↑/↓ to navigate, Enter to select, Esc to cancel
 ```
