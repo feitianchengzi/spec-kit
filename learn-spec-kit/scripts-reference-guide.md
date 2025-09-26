@@ -10,16 +10,14 @@ Spec-Kit 项目包含了一套完整的脚本工具，用于支持 spec-driven �
 scripts/
 ├── bash/                          # Bash 脚本（Unix-like 系统）
 │   ├── common.sh                  # 通用函数和变量
-│   ├── check-task-prerequisites.sh # 检查任务前置条件
+│   ├── check-prerequisites.sh     # 统一的前置条件检查
 │   ├── create-new-feature.sh      # 创建新功能
-│   ├── get-feature-paths.sh       # 获取功能路径
 │   ├── setup-plan.sh              # 设置计划
 │   └── update-agent-context.sh    # 更新代理上下文
 └── powershell/                    # PowerShell 脚本（Windows 系统）
     ├── common.ps1                 # 通用函数和变量
-    ├── check-task-prerequisites.ps1 # 检查任务前置条件
+    ├── check-prerequisites.ps1     # 统一的前置条件检查
     ├── create-new-feature.ps1     # 创建新功能
-    ├── get-feature-paths.ps1      # 获取功能路径
     ├── setup-plan.ps1             # 设置计划
     └── update-agent-context.ps1   # 更新代理上下文
 ```
@@ -143,13 +141,13 @@ FEATURE_NUM: 001
 
 ### 2. 获取功能路径
 
-#### Bash: `get-feature-paths.sh`
+#### Bash: `check-prerequisites.sh`
 
 **作用**: 显示当前功能的所有相关路径信息。
 
 **用法**:
 ```bash
-./get-feature-paths.sh
+./check-prerequisites.sh --paths-only
 ```
 
 **输出**:
@@ -162,7 +160,7 @@ IMPL_PLAN: /path/to/repo/specs/001-user-authentication/plan.md
 TASKS: /path/to/repo/specs/001-user-authentication/tasks.md
 ```
 
-#### PowerShell: `get-feature-paths.ps1`
+#### PowerShell: `check-prerequisites.ps1`
 
 **作用**: PowerShell 版本的获取功能路径脚本。
 
@@ -202,13 +200,13 @@ BRANCH: 001-user-authentication
 
 ### 1. 检查任务前置条件
 
-#### Bash: `check-task-prerequisites.sh`
+#### Bash: `check-prerequisites.sh`
 
 **作用**: 检查当前功能的任务前置条件是否满足。
 
 **用法**:
 ```bash
-./check-task-prerequisites.sh [--json]
+./check-prerequisites.sh [--json]
 ```
 
 **检查项目**:
@@ -232,11 +230,11 @@ AVAILABLE_DOCS:
 
 **JSON 模式**:
 ```bash
-./check-task-prerequisites.sh --json
+./check-prerequisites.sh --json
 # 输出: {"FEATURE_DIR":"...","AVAILABLE_DOCS":["research.md","contracts/"]}
 ```
 
-#### PowerShell: `check-task-prerequisites.ps1`
+#### PowerShell: `check-prerequisites.ps1`
 
 **作用**: PowerShell 版本的检查任务前置条件脚本。
 
@@ -334,19 +332,19 @@ Summary of changes:
 6. **检查任务前置条件**:
    ```bash
    # Bash
-   ./scripts/bash/check-task-prerequisites.sh
+   ./scripts/bash/check-prerequisites.sh
    
    # PowerShell
-   ./scripts/powershell/check-task-prerequisites.ps1
+   ./scripts/powershell/check-prerequisites.ps1
    ```
 
 7. **获取路径信息**:
    ```bash
    # Bash
-   ./scripts/bash/get-feature-paths.sh
+   ./scripts/bash/check-prerequisites.sh --paths-only
    
    # PowerShell
-   ./scripts/powershell/get-feature-paths.ps1
+   ./scripts/powershell/check-prerequisites.ps1 -PathsOnly
    ```
 
 ## 脚本特性
@@ -391,7 +389,7 @@ Summary of changes:
 ### 2. 自定义扩展
 
 可以通过以下方式扩展脚本功能：
-- **添加新的检查项**: 在 `check-task-prerequisites` 脚本中添加新的文件检查
+- **添加新的检查项**: 在 `check-prerequisites` 脚本中添加新的文件检查
 - **自定义模板**: 修改模板文件以适应特定项目需求
 - **新的输出格式**: 添加新的输出格式支持
 

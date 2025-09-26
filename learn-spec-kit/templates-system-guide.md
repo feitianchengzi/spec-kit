@@ -10,6 +10,10 @@ Templates 目录是 spec-kit 项目的模板系统核心，包含了用于生成
 templates/
 ├── agent-file-template.md          # AI 代理文件模板
 ├── commands/                       # 命令模板目录
+│   ├── analyze.md                  # 分析命令模板
+│   ├── clarify.md                  # 澄清命令模板
+│   ├── constitution.md              # 宪法命令模板
+│   ├── implement.md                # 实现命令模板
 │   ├── plan.md                     # 计划命令模板
 │   ├── specify.md                  # 规范命令模板
 │   └── tasks.md                    # 任务命令模板
@@ -210,6 +214,47 @@ Auto-generated from all feature plans. Last updated: [DATE]
 - 确保 AI 建议符合项目标准
 - 维护开发指导的一致性
 
+### 5. commands/ 命令模板目录
+
+**作用**: 为不同 AI 代理提供标准化的命令执行模板。
+
+#### 命令模板详解
+
+##### 1. commands/specify.md - 规范命令模板
+- 定义 `/specify` 命令的执行逻辑
+- 调用 `create-new-feature.sh` 脚本
+- 生成功能规范文档
+
+##### 2. commands/plan.md - 计划命令模板  
+- 定义 `/plan` 命令的执行逻辑
+- 调用 `setup-plan.sh` 脚本
+- 生成实现计划文档
+
+##### 3. commands/tasks.md - 任务命令模板
+- 定义 `/tasks` 命令的执行逻辑
+- 调用 `check-prerequisites.sh` 脚本
+- 生成任务列表文档
+
+##### 4. commands/clarify.md - 澄清命令模板
+- 定义 `/clarify` 命令的执行逻辑
+- 识别规范中的模糊点
+- 通过交互式问答澄清需求
+
+##### 5. commands/analyze.md - 分析命令模板
+- 定义 `/analyze` 命令的执行逻辑
+- 执行跨文档一致性分析
+- 生成质量分析报告
+
+##### 6. commands/constitution.md - 宪法命令模板
+- 定义 `/constitution` 命令的执行逻辑
+- 创建或更新项目宪法
+- 管理宪法版本和同步
+
+##### 7. commands/implement.md - 实现命令模板
+- 定义 `/implement` 命令的执行逻辑
+- 执行任务列表中的实现步骤
+- 按阶段完成功能开发
+
 ## 命令模板详解
 
 ### 1. commands/specify.md - 规范命令模板
@@ -274,8 +319,8 @@ Auto-generated from all feature plans. Last updated: [DATE]
 #### 核心功能
 
 1. **脚本调用**
-   - Bash: `scripts/bash/check-task-prerequisites.sh --json`
-   - PowerShell: `scripts/powershell/check-task-prerequisites.ps1 -Json`
+   - Bash: `scripts/bash/check-prerequisites.sh --json`
+   - PowerShell: `scripts/powershell/check-prerequisites.ps1 -Json`
 
 2. **执行步骤**
    - 运行脚本并解析输出

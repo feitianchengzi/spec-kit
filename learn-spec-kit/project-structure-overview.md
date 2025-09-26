@@ -4,6 +4,7 @@
 
 ```
 spec-kit/
+├── AGENTS.md                       # AI 代理支持文档
 ├── CHANGELOG.md                    # 项目变更日志
 ├── CODE_OF_CONDUCT.md             # 行为准则
 ├── CONTRIBUTING.md                # 贡献指南
@@ -23,23 +24,20 @@ spec-kit/
 │   ├── spec-kit-video-header.jpg # 视频头部图片
 │   └── specify_cli.gif           # CLI 演示动画
 ├── memory/                        # 项目记忆/宪法
-│   ├── constitution_update_checklist.md # 宪法更新检查清单
 │   └── constitution.md            # 项目宪法
 ├── pyproject.toml                 # Python 项目配置
 ├── README.md                      # 项目主说明文档
 ├── scripts/                       # 脚本目录
 │   ├── bash/                     # Bash 脚本
-│   │   ├── check-task-prerequisites.sh
+│   │   ├── check-prerequisites.sh
 │   │   ├── common.sh
 │   │   ├── create-new-feature.sh
-│   │   ├── get-feature-paths.sh
 │   │   ├── setup-plan.sh
 │   │   └── update-agent-context.sh
 │   └── powershell/               # PowerShell 脚本
-│       ├── check-task-prerequisites.ps1
+│       ├── check-prerequisites.ps1
 │       ├── common.ps1
 │       ├── create-new-feature.ps1
-│       ├── get-feature-paths.ps1
 │       ├── setup-plan.ps1
 │       └── update-agent-context.ps1
 ├── SECURITY.md                    # 安全策略
@@ -48,18 +46,19 @@ spec-kit/
 │   └── specify_cli/              # CLI 工具源码
 │       └── __init__.py           # 主程序文件
 ├── SUPPORT.md                     # 支持信息
-├── templates/                     # 模板目录
-│   ├── agent-file-template.md    # 代理文件模板
-│   ├── commands/                 # 命令模板
-│   │   ├── plan.md              # 计划命令模板
-│   │   ├── specify.md           # 规范命令模板
-│   │   └── tasks.md             # 任务命令模板
-│   ├── plan-template.md          # 计划模板
-│   ├── spec-template.md          # 规范模板
-│   └── tasks-template.md         # 任务模板
-└── tutorials/                     # 教程目录（新增）
-    ├── uvx-implementation-guide.md # uvx 实现原理
-    └── project-structure-overview.md # 本文档
+└── templates/                     # 模板目录
+    ├── agent-file-template.md    # 代理文件模板
+    ├── commands/                 # 命令模板
+    │   ├── analyze.md           # 分析命令模板
+    │   ├── clarify.md           # 澄清命令模板
+    │   ├── constitution.md       # 宪法命令模板
+    │   ├── implement.md         # 实现命令模板
+    │   ├── plan.md              # 计划命令模板
+    │   ├── specify.md           # 规范命令模板
+    │   └── tasks.md             # 任务命令模板
+    ├── plan-template.md          # 计划模板
+    ├── spec-template.md          # 规范模板
+    └── tasks-template.md         # 任务模板
 ```
 
 ## 核心组件说明
@@ -72,32 +71,39 @@ spec-kit/
   - 所有子命令的实现
   - 交互式界面和进度跟踪
 
-### 2. 配置文件 (`pyproject.toml`)
+### 2. AI 代理支持 (`AGENTS.md`)
+
+- **代理集成**: 支持 11 种 AI 代理的集成指南
+- **命令模板**: 为不同代理提供标准化的命令模板
+- **目录结构**: 定义各代理的目录和文件组织方式
+- **扩展机制**: 如何添加新的 AI 代理支持
+
+### 3. 配置文件 (`pyproject.toml`)
 
 - **项目元数据**: 名称、版本、描述
 - **依赖管理**: 所需的 Python 包
 - **脚本入口点**: 定义 `specify` 命令
 - **构建配置**: 使用 hatchling 作为构建后端
 
-### 3. 模板系统 (`templates/`)
+### 4. 模板系统 (`templates/`)
 
 - **命令模板**: 为不同 AI 助手提供标准化的命令模板
 - **项目模板**: 包含规范、计划、任务等模板文件
 - **代理模板**: 用于创建 AI 代理配置文件
 
-### 4. 脚本工具 (`scripts/`)
+### 5. 脚本工具 (`scripts/`)
 
 - **跨平台支持**: 同时提供 Bash 和 PowerShell 版本
 - **功能脚本**: 包含项目创建、计划设置、上下文更新等功能
 - **通用脚本**: 提供共享的脚本功能和工具
 
-### 5. 文档系统 (`docs/`)
+### 6. 文档系统 (`docs/`)
 
 - **DocFX 配置**: 使用 DocFX 生成文档网站
 - **多语言支持**: 包含安装、开发、快速开始等指南
 - **结构化文档**: 通过 toc.yml 组织文档层次结构
 
-### 6. 媒体资源 (`media/`)
+### 7. 媒体资源 (`media/`)
 
 - **品牌资源**: Logo 和品牌图片
 - **演示资源**: GIF 动画展示工具功能

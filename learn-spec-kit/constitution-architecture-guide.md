@@ -236,7 +236,7 @@ Constitution 有版本号，变更需要文档化：
 ```
 
 ### 更新检查清单
-`constitution_update_checklist.md` 确保所有相关文档同步更新：
+通过 `/constitution` 命令确保所有相关文档同步更新：
 
 ```markdown
 ## Templates to Update
